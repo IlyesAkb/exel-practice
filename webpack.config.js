@@ -13,7 +13,8 @@ const jsLoaders = () => {
     {
       loader: 'babel-loader',
       options: {
-        presets: ['@babel/preset-env']
+        presets: ['@babel/preset-env'],
+        plugins: ['@babel/plugin-proposal-class-properties']
       }
     }
   ]
@@ -24,9 +25,6 @@ const jsLoaders = () => {
 
   return loaders
 }
-
-console.log(isProd)
-console.log(isDev)
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),

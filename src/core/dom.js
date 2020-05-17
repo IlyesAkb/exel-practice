@@ -61,8 +61,11 @@ class Dom {
     return this.$el.dataset
   }
 
-  get styles() {
-    return this.$el.style
+  getStyles(styles = []) {
+    return styles.reduce((res, style) => {
+      res[style] = this.$el.style[style]
+      return res
+    }, {})
   }
 
   focus() {
@@ -82,6 +85,14 @@ class Dom {
     Object.keys(styles).forEach(key => {
       this.$el.style[key] = styles[key]
     })
+  }
+
+  attr(name, value) {
+    if (typeof value === 'string') {
+      this.$el.setAttribute(name, value)
+      return this
+    }
+    return this.$el.getAttribute(name)
   }
 
   id(parse) {
